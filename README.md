@@ -1,2 +1,2 @@
 # data_utils
-Utility for Data Engineering
+Utility methods for Data Engineering
