@@ -39,3 +39,17 @@ class ExcelUtility:
             print(f"Rows {rows} removed. File saved at {save_path}.")
         except Exception as e:
             print(f"Error removing rows: {e}")
+
+    def read_file(self):
+        """
+        Reads the Excel file into a DataFrame.
+
+        Returns:
+            pd.DataFrame: DataFrame containing the Excel file data.
+        """
+        try:
+            df = pd.read_excel(self.file_path)
+            return df
+        except Exception as e:
+            print(f"Error reading Excel file: {e}")
+            return None
