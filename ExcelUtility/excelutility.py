@@ -53,3 +53,19 @@ class ExcelUtility:
         except Exception as e:
             print(f"Error reading Excel file: {e}")
             return None
+
+    def export_distinct_values(self, output_path):
+        """
+        Exports the distinct values of each column in the Excel file to a CSV file.
+
+        Parameters:
+            output_path (str): Path to save the output CSV file with distinct values.
+        """
+        try:
+            df = pd.read_excel(self.file_path)
+            distinct_values = {column: df[column].dropna().unique().tolist() for column in df.columns}
+            distinct_df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in distinct_values.items()]))
+            distinct_df.to_csv(output_path, index=False)
+            print(f"Distinct values for each column exported to {output_path}.")
+        except Exception as e:
+            print(f"Error exporting distinct values: {e}")
