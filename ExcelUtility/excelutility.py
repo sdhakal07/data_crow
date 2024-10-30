@@ -22,3 +22,20 @@ class ExcelUtility:
         except Exception as e:
             print(f"Error converting Excel to CSV: {e}")
 
+    def remove_rows(self, rows, output_path=None):
+        """
+        Removes specified rows from the Excel file.
+
+        Parameters:
+            rows (list): List of row indices to remove.
+            output_path (str): Path to save the modified file.
+                               If None, overwrites the original file.
+        """
+        try:
+            df = pd.read_excel(self.file_path)
+            df = df.drop(rows)
+            save_path = output_path if output_path else self.file_path
+            df.to_excel(save_path, index=False)
+            print(f"Rows {rows} removed. File saved at {save_path}.")
+        except Exception as e:
+            print(f"Error removing rows: {e}")
