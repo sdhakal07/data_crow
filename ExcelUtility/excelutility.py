@@ -69,3 +69,18 @@ class ExcelUtility:
             print(f"Distinct values for each column exported to {output_path}.")
         except Exception as e:
             print(f"Error exporting distinct values: {e}")
+    def get_headers(self):
+        """
+        Extracts and returns the header (column names) of the Excel file.
+
+        Returns:
+            list: List of column names in the Excel file.
+        """
+        try:
+            df = pd.read_excel(self.file_path, nrows=0)  # Reads only the header row
+            headers = df.columns.tolist()
+            print(f"Headers extracted: {headers}")
+            return headers
+        except Exception as e:
+            print(f"Error extracting headers: {e}")
+            return None
